@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulasi Edukasi Link Scam</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f4f8;
+      color: #111827;
+    }
+    .top-warning {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: linear-gradient(90deg, #dc2626, #ef4444);
+      color: #fff;
+      text-align: center;
+      padding: 14px 10px;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.18);
+    }
+    .wrap {
+      max-width: 460px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      box-shadow: 0 0 30px rgba(0,0,0,.06);
+    }
+    .hero {
+      background: linear-gradient(180deg, #0ea5e9, #2563eb);
+      color: #fff;
+      padding: 18px 18px 24px;
+      text-align: center;
+    }
+    .notif {
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 8px 0 8px;
+      font-size: 36px;
+      line-height: 1.1;
+      font-weight: 800;
+    }
+    .hero p {
+      margin: 0;
+      font-size: 17px;
+      opacity: .96;
+      font-weight: 700;
+    }
+    .logo {
+      margin: 18px auto 8px;
+      width: 82px;
+      height: 82px;
+      border-radius: 24px;
+      background: #fff;
+      color: #2563eb;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(0,0,0,.18);
+    }
+    .card {
+      margin: -18px 16px 16px;
+      background: #fff;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.12);
+      position: relative;
+    }
+    .educate-tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fef2f2;
+      color: #b91c1c;
+      font-weight: 800;
+      font-size: 12px;
+      border: 1px solid #fecaca;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    .sub {
+      color: #4b5563;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .fake-form {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .fake-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .fake-form input {
+      width: 100%;
+      padding: 14px 14px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+    .btn {
+      width: 100%;
+      border: 0;
+      padding: 15px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #0ea5e9, #2563eb);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(37,99,235,.22);
+    }
+    .btn:hover { opacity: .96; }
+    .result {
+      display: none;
+      margin-top: 14px;
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      color: #9a3412;
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+    .section {
+      padding: 0 16px 18px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 4px 0 12px;
+    }
+    .comment-box {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #e5e7eb;
+    }
+    .comment-name {
+      font-weight: 800;
+      color: #1d4ed8;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .comment-text {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .comment-meta {
+      margin-top: 8px;
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .tips {
+      background: #ecfeff;
+      border: 1px solid #a5f3fc;
+      border-radius: 18px;
+      padding: 16px;
+      margin: 12px 16px 22px;
+    }
+    .tips h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #0f172a;
+    }
+    .tips ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #334155;
+      line-height: 1.7;
+    }
+    .footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      padding: 0 16px 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-warning">
+    ⚠️ SIMULASI EDUKASI — CONTOH WEB PHISHING / LINK SCAM. JANGAN DIPAKAI UNTUK MENIPU.
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="notif">🎉 Agus Setiawan dari Jakarta menerima saldo Rp500.000! 🎊</div>
+      <div class="logo">D</div>
+      <h1>ULANG TAHUN<br>RP 500.000</h1>
+      <p>DANA KAGET</p>
+    </div>
+
+    <div class="card">
+      <div class="educate-tag">SIMULASI EDUKASI</div>
+      <h2 class="title">Contoh halaman scam yang terlihat meyakinkan</h2>
+      <div class="sub">
+        Ini hanya demo untuk kasih paham teman kamu bahwa halaman seperti ini bisa dibuat sangat mirip,
+        padahal palsu. Tombol di bawah tidak mengirim data apa pun.
+      </div>
+
+      <div class="fake-form">
+        <label>Masukkan nomor ponsel untuk klaim saldo</label>
+        <input type="text" placeholder="08xxxxxxxxxx" />
+        <button class="btn" onclick="showWarning()">DAPATKAN</button>
+        <div class="result" id="result">
+          Ini cuma simulasi. Pada web scam asli, tahap seperti ini biasanya dipakai untuk:
+          meminta nomor, PIN, login, atau OTP.  
+          <br><br>
+          Ciri utamanya:
+          domain aneh, komentar palsu, dan janji saldo gratis yang terlalu bagus untuk jadi kenyataan.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Komentar “meyakinkan” yang biasanya palsu</div>
+
+      <div class="comment-box">
+        <div class="comment-name">Agus Setiawan</div>
+        <div class="comment-text">Awalnya saya kira ini tidak benar, tapi ternyata berhasil. Saldo langsung masuk!</div>
+        <div class="comment-meta">1 menit · Suka · Balas</div>
+      </div>
+
+      <div class="comment-box">
+        <div class="comment-name">Nur Aisyah</div>
+        <div class="comment-text">Sudah masuk! Aku langsung share ke teman-teman 👍</div>
+        <div class="comment-meta">2 menit · Suka · Balas</div>
+      </div>
+
+      <div class="comment-box">
+        <div class="comment-name">Fajar Hidayat</div>
+        <div class="comment-text">Gila, saldo Rp500.000 beneran masuk 😭 Terima kasih!</div>
+        <div class="comment-meta">1 menit · Suka · Balas</div>
+      </div>
+
+      <div class="comment-box">
+        <div class="comment-name">Putri Maharani</div>
+        <div class="comment-text">Mantap banget! Terima kasih 💚</div>
+        <div class="comment-meta">5 menit · Suka · Balas</div>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h3>Kenapa ini mencurigakan?</h3>
+      <ul>
+        <li>Domain bisa dibuat mirip, tapi bukan domain resmi.</li>
+        <li>Tampilan profesional tidak berarti aman.</li>
+        <li>Komentar bisa ditanam manual, bukan komentar asli.</li>
+        <li>Target akhirnya sering meminta nomor, login, PIN, atau OTP.</li>
+        <li>Platform resmi tidak membagikan saldo lewat domain random.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      Demo edukasi anti-phishing. Dipakai untuk kasih paham teman / keluarga tentang modus link palsu.
+    </div>
+  </div>
+
+  <script>
+    function showWarning() {
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+</body>
+</html>
